@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EFI</RootNamespace>
+    <AssemblyName>Easy Film Importer</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIOS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Meedio_Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Meedio_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIO</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Meedio_Release|AnyCPU' ">
+    <OutputPath>bin\Meedio_Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MeediOS_Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MeediOS_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIOS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MeediOS_Release|AnyCPU' ">
+    <OutputPath>bin\MeediOS_Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIOS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MediaFoldersAPI">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MeediOS.Configuration">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MeediOS.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MeediOSInterfaces">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MeediOSInterfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\CORE\ImporterPropertiesCore.cs" />
+    <Compile Include="Code\Toolbox\Debugger.cs" />
+    <Compile Include="Code\Toolbox\Helpers.cs" />
+    <Compile Include="Code\Importing Engine\MediaLocationsRetriever.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\DiskMediaScanInitiator.cs" />
+    <Compile Include="Code\Media File Importers\Media Type Detector\MediaTypeDetector.cs" />
+    <Compile Include="Code\Media File Importers\Supporting Engines\MultipartMovieDetectionEngine.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\SetFilmItemProcessingFlags.cs" />
+    <Compile Include="Code\Media Snapshots Engine\MediaSnapshotComparingEngine.cs" />
+    <Compile Include="Code\Media Snapshots Engine\MediaSnapshotEngine.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\ExistingMediaItemSeachEngine.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Movie Section Updater\MoviesSectionUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\SingleMovieItemUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\SingleMovieItemUpdaterHelpers.cs" />
+    <Compile Include="Code\Importer Properties\GetMediaImportersProperties.cs" />
+    <Compile Include="Code\Importing Engine\MainImportingEngine.cs" />
+    <Compile Include="Code\Directory Scanner\DirectoryScanner.cs" />
+    <Compile Include="Code\Media File Importers\Supporting Engines\DvdDirectoryImporter.cs" />
+    <Compile Include="Code\Media Section Populator\MediaSectionPopulatorHelpers.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\MediaImportingEngineHelpers.cs" />
+    <Compile Include="Code\Media Section Populator\MediaSectionPopulator.cs" />
+    <Compile Include="Code\Media File Importers\Supporting Engines\MovieTitleLocatingEngine.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\MediaImportingEngine.cs" />
+    <Compile Include="Code\Directory Scanner\RecursiveDirectoryScanner.cs" />
+    <Compile Include="Code\Media File Importers\Single Media File Importer\SingleMediaFileImporter.cs" />
+    <Compile Include="Code\Media File Importers\Single Media File Importer\SingleMediaFileImporterHelpers.cs" />
+    <Compile Include="Code\Media Updaters\MediaUpdaters.cs" />
+    <Compile Include="Code\File Metadata Extractors\MovieFileMetadataExtractor.cs" />
+    <Compile Include="Code\RegEx Matchers\RegExMatchers.cs" />
+    <Compile Include="Code\Settings\Settings.cs" />
+    <Compile Include="Code\File Metadata Extractors\VideoFilenameCleaner.cs" />
+    <Compile Include="Code\Importer Properties\MediaSections.cs" />
+    <Compile Include="Code\CORE\Importer.cs" />
+    <Compile Include="Code\Importing Engine\ImportingEngineHelpers.cs" />
+    <Compile Include="Code\Importer Properties\GetImporterProperties.cs" />
+    <Compile Include="Code\Importer Properties\PropertiesSetter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notes\TODO\TODO - Current version.txt" />
+    <Content Include="Notes\TODO\TODO - Next version.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\Helpers\" />
+    <Folder Include="Notes\Changelog\" />
+    <Folder Include="Notes\Wiki\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.*" "C:\Program Files (x86)\MeediOS\plugins\import\Easy Film Importer\"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
