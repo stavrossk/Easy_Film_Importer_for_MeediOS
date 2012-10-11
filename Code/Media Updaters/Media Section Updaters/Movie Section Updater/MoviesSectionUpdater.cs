@@ -43,7 +43,8 @@ namespace EMA.MediaSectionUpdaters
                 ("Initializing section variables...");
 
 
-            int totalItems = section.ItemCount;
+            int totalItems 
+                = section.ItemCount;
 
 
             int currentItem = 1;
@@ -103,7 +104,8 @@ namespace EMA.MediaSectionUpdaters
             
 
             Debugger.LogMessageToFile
-                ("Completing updating of Films section...");
+                ("Completing updating" +
+                 " of Films section...");
 
 
             #endregion

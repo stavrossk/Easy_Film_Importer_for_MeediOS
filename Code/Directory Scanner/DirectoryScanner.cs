@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using EMA.Core;
 using EMA.ImportingEngine;
@@ -108,7 +107,11 @@ namespace EMA.MediaSnapshotEngine
             }
             catch (Exception e)
             {
-                Debugger.LogMessageToFile(e.ToString());
+
+                Debugger
+                    .LogMessageToFile
+                    (e.ToString());
+
             }
 
             return true;
@@ -210,7 +213,8 @@ namespace EMA.MediaSnapshotEngine
             {
 
                 dirsTotal = GetDirectoryCount
-                    (importRootFolder, ref currentDir);
+                    (importRootFolder,
+                    ref currentDir);
 
 
             }

@@ -125,7 +125,8 @@ namespace EMA.MediaSnapshotEngine
 
 
 
-        private static bool AdhereToVideoFilesizeThreshold(FileInfo file)
+        private static bool AdhereToVideoFilesizeThreshold
+            (FileInfo file)
         {
 
 

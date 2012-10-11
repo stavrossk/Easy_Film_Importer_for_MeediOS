@@ -72,7 +72,13 @@ namespace EMA.MediaSnapshotEngine
             (IList<FileInfo> allfiles)
         {
 
-            var filePaths = new string[allfiles.Count];
+
+
+            var filePaths
+                = new string
+                    [allfiles.Count];
+
+
 
             for (int i = 0; i < allfiles.Count; i++)
             {
@@ -99,6 +105,7 @@ namespace EMA.MediaSnapshotEngine
         }
 
 
+
         internal static bool ScanConstructedArrayAndImportMediaFiles
                (IMLSection section,
                 ref ArrayList extensionsToIgnore,
@@ -116,18 +123,26 @@ namespace EMA.MediaSnapshotEngine
 
 
             if (!Settings.UpdateMediaSectionOnEachImportedItem)
-                ImportingEngineHelpers.BeginUpdatingSections(section);
+                ImportingEngineHelpers
+                    .BeginUpdatingSections
+                    (section);
+
+
 
             if ( !ImportFilesInArray
-                (section, ref extensionsToIgnore, filmLocations,
-                 videoExtensions, audioExtensions,
-                combinedSceneTags, filesToImport, pluginPath, videoExtensionsCommon)
+                (section, ref extensionsToIgnore, 
+                 filmLocations, videoExtensions,
+                 audioExtensions, combinedSceneTags,
+                 filesToImport, pluginPath,
+                 videoExtensionsCommon)
                ) return false;
+
 
 
             if (!Settings.UpdateMediaSectionOnEachImportedItem)
                 ImportingEngineHelpers.EndUpdatingSections
                     (section);
+
 
 
             return true;
@@ -180,12 +195,15 @@ namespace EMA.MediaSnapshotEngine
 
 
 
-                ImportingEngineHelpers.EndUpdatingSections
+                ImportingEngineHelpers
+                    .EndUpdatingSections
                     (section);
+
 
 
                 MainImportingEngine.
                     CurrentProgress = 100;
+
 
 
                 Helpers.UpdateProgress
@@ -193,7 +211,11 @@ namespace EMA.MediaSnapshotEngine
                      " Completed jobs were save to library.", "");
 
 
-                MainImportingEngine.ThisProgress = null;
+
+                MainImportingEngine
+                    .ThisProgress = null;
+
+
 
                 return false;
 
@@ -286,7 +308,8 @@ namespace EMA.MediaSnapshotEngine
             else
             {
 
-                if (!MediaSnapshotComparingEngine.CreateNewMediaSnapshotScanDirectoriesImportMediaFiles(
+                if (!MediaSnapshotComparingEngine
+                    .CreateNewMediaSnapshotScanDirectoriesImportMediaFiles(
                     importRootFolder,
                     allfilesFI,
                     moviesSection,

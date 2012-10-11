@@ -135,7 +135,6 @@
     <Content Include="Notes\TODO\TODO - Next version.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Code\Helpers\" />
     <Folder Include="Notes\Changelog\" />
     <Folder Include="Notes\Wiki\" />
     <Folder Include="Properties\" />

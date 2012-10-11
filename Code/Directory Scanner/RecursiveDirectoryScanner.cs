@@ -7,11 +7,19 @@ using System.Windows.Forms;
 using EMA.ImportingEngine;
 using MeediOS;
 
+
+
 namespace EMA.MediaSnapshotEngine
 {
 
+
+
+
     class RecursiveDirectoryScanner
     {
+
+
+
 
         internal static bool ScanDirectoryRecursively
             (
@@ -31,10 +39,16 @@ namespace EMA.MediaSnapshotEngine
         {
 
 
-                MainImportingEngine.GeneralStatus = "Performing media importing...";
+                MainImportingEngine.GeneralStatus
+                    = "Performing media importing...";
 
-                if (Helpers.UserCancels("Scanning directory " + strDir + "..."))
+
+
+                if (Helpers.UserCancels
+                    ("Scanning directory "
+                    + strDir + "..."))
                     return false;
+
 
 
                 if (!DirectoryScanner
@@ -58,18 +72,38 @@ namespace EMA.MediaSnapshotEngine
                     return false;
 
 
-                IEnumerable<string> directories = new BindingList<string>();
+                IEnumerable<string> directories
+                    = new BindingList<string>();
+
+
 
                 try
                 {
-                    directories = GetSubDirectories(strDir);
+
+                    directories
+                        = GetSubDirectories
+                        (strDir);
+
+
                 }
                 catch (PathTooLongException e)
                 {
-                    MessageBox.Show(@"Path too long");
-                    Debugger.LogMessageToFile("[Directory scanner] An unexpected error occured while the Directory scanner" +
-                                              " was trying to retrieve sub-directories of the directory " + strDir + 
-                                              ". The error was: " + e);
+
+
+                    //MessageBox.Show
+                    //    (@"Path too long");
+
+
+                    Debugger.LogMessageToFile
+                        ("[Directory scanner]" +
+                         " An unexpected error occured " +
+                         "while the Directory scanner" +
+                         " was trying to retrieve " +
+                         "sub-directories of the directory "
+                         + strDir + 
+                         ". The error was: " + e);
+
+
                 }
                
 
@@ -93,21 +127,39 @@ namespace EMA.MediaSnapshotEngine
         }
 
 
-        private static IEnumerable<string> GetSubDirectories(string strDir)
+        private static IEnumerable<string>
+            GetSubDirectories
+            (string strDir)
         {
+
+
             string[] directories;
 
             try
             {
-                directories = Directory.GetDirectories(strDir);
+
+
+                directories 
+                    = Directory
+                    .GetDirectories
+                    (strDir);
+
+
             }
             catch
             {
                 return null;
             }
 
+
+
             return directories;
         }
+
+
+
+
+
 
 
         //TODO: make all these parameters a struct
@@ -201,5 +253,8 @@ namespace EMA.MediaSnapshotEngine
    
     
     }
+
+
+
 
 }

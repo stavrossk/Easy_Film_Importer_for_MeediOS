@@ -83,10 +83,16 @@ namespace EMA
             }
 
 
+
             if (releaseIndex > 0)
-                filename = filename.Substring(0, releaseIndex);
+                filename = filename.Substring
+                    (0, releaseIndex);
+
+
 
             filename = filename.Trim();
+
+
 
             return filename;
         }
@@ -109,13 +115,18 @@ namespace EMA
 
 
                     Helpers.UpdateProgress
-                        ("","Loading filename cleaner dictionaries...");
+                        ("","Loading filename " +
+                            "cleaner dictionaries...");
+
 
                     Debugger.LogMessageToFile
-                        ("Loading filename cleaner dictionaries...");
+                        ("Loading filename " +
+                         "cleaner dictionaries...");
+
 
                     string dictionaryPath 
-                        = pluginPath + @"Video filename cleaner dictionary\";
+                        = pluginPath +
+                        @"Video filename cleaner dictionary\";
 
 
 
@@ -144,6 +155,7 @@ namespace EMA
 
                     }
                     catch (Exception e)
+                    
                     {
 
                         Helpers.UpdateProgress

@@ -1,6 +1,6 @@
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-//''    Easy Media Adder for Meedio/MeediOS                                                               ''
+//''    Easy Film Importer for Meedio/MeediOS                                                               ''
 //''    Copyright (C) 2008-2012  Stavros Skamagkis                               ''
 //''                                                                             ''
 //''    This program is free software: you can redistribute it and/or modify     ''
