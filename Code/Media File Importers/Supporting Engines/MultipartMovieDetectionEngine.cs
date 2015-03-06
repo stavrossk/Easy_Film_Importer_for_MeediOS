@@ -1,4 +1,27 @@
-﻿using System;
+﻿//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//''    Easy Film Importer for Meedio/MeediOS                                    ''
+//''    Copyright (C) 2008-2012  Stavros Skamagkis                               ''
+//''                                                                             ''
+//''    This program is free software: you can redistribute it and/or modify     ''
+//''    it under the terms of the GNU General Public License as published by     ''
+//''    the Free Software Foundation, either version 3 of the License, or        ''
+//''    (at your option) any later version.                                      ''
+//''                                                                             ''
+//''    This program is distributed in the hope that it will be useful,          ''
+//''    but WITHOUT ANY WARRANTY; without even the implied warranty of           ''
+//''    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            ''
+//''    GNU General Public License for more details.                             ''
+//''                                                                             ''
+//''    You should have received a copy of the GNU General Public License        ''
+//''    along with this program.  If not, see <http://www.gnu.org/licenses/>.    ''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -127,6 +150,8 @@ namespace MediaFairy.MediaSnapshotEngine
         }
 
 
+
+
         internal static bool OnMultiplePartsDetectionAddToMoviesSection
             (IMLSection moviesSection, string locationTag,
             string externalID, int parts, FileSystemInfo dir)
@@ -165,18 +190,26 @@ namespace MediaFairy.MediaSnapshotEngine
 
 
 
-        internal static int DetectMoviePart(int parts, bool isVideo, FileInfo file, bool isUNC,
-                                           ref int count, ref string locationTag)
+        internal static int DetectMoviePart
+            (int parts, bool isVideo,
+             FileInfo file, bool isUNC,
+             ref int count, ref string locationTag)
         {
            
+
             if (!isVideo)
                 return parts;
 
-            if (DetectMoviePartByKeywords(file, isUNC, ref parts, ref locationTag)) 
+
+            if (DetectMoviePartByKeywords
+                (file, isUNC, ref parts,
+                ref locationTag)) 
                 return parts;
 
 
             count++;
+
+
 
             return parts;
         }
@@ -184,39 +217,67 @@ namespace MediaFairy.MediaSnapshotEngine
 
 
 
-        internal static bool DetectMoviePartByKeywords(FileSystemInfo file, bool isUNC, ref int parts, ref string locationTag)
+
+
+        internal static bool DetectMoviePartByKeywords
+            (FileSystemInfo file, bool isUNC,
+            ref int parts, ref string locationTag)
         {
+
 
             bool isPart = false;
             int digitIndex;
 
 
-            bool containsPartKeyword = file.Name.IndexOf("PART", StringComparison.OrdinalIgnoreCase) >= 0;
-            bool containsCdKeyword   = file.Name.IndexOf("CD"  , StringComparison.OrdinalIgnoreCase) >= 0;
+            bool containsPartKeyword 
+                = file.Name.IndexOf
+                ("PART", StringComparison
+                .OrdinalIgnoreCase) >= 0;
+
+            bool containsCdKeyword  
+                = file.Name.IndexOf
+                ("CD"  , StringComparison
+                .OrdinalIgnoreCase) >= 0;
 
 
             if (containsPartKeyword)
             {
-                digitIndex = file.Name.IndexOf("part") + 4;
 
-                if (Char.IsDigit(file.Name[digitIndex]) || Char.IsDigit(file.Name[digitIndex + 1]))
+
+                digitIndex = file.Name.IndexOf
+                    ("part", StringComparison.Ordinal) + 4;
+
+
+                if (Char.IsDigit(file.Name[digitIndex]) 
+                    || Char.IsDigit(file.Name[digitIndex + 1]))
                 {
+
                     locationTag = locationTag + "|" + file.FullName;
                     parts++;
                     isPart = true;
+
                 }
+
 
             }
 
+
+
             if (containsCdKeyword)
             {
-                digitIndex = file.Name.IndexOf("cd") + 2;
 
-                if (Char.IsDigit(file.Name[digitIndex]) || Char.IsDigit(file.Name[digitIndex + 1]))
+                digitIndex = file.Name.IndexOf
+                    ("cd", StringComparison.Ordinal) + 2;
+
+
+                if (Char.IsDigit(file.Name[digitIndex])
+                    || Char.IsDigit(file.Name[digitIndex + 1]))
                 {
+
                     locationTag = locationTag + "|" + file.FullName;
                     parts++;
                     isPart = true;
+
                 }
 
             }
@@ -227,5 +288,14 @@ namespace MediaFairy.MediaSnapshotEngine
             return isPart || isUNC;
 
         }
+
+
+
+
+
     }
+
+
+
+
 }

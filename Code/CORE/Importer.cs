@@ -1,12 +1,8 @@
 ﻿//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-//''    Easy Film Adder Lite Edition for Meedio/MeediOS for Meedio and MeediOS 
-//'' 
-//''    An import-type plugin for Meedio and MeediOS Home Theater applications     
-//''
+//''    Easy Film Importer for Meedio/MeediOS                                    ''
 //''    Copyright (C) 2008-2012  Stavros Skamagkis                               ''
-//''     
-//''
+//''                                                                             ''
 //''    This program is free software: you can redistribute it and/or modify     ''
 //''    it under the terms of the GNU General Public License as published by     ''
 //''    the Free Software Foundation, either version 3 of the License, or        ''
@@ -23,6 +19,8 @@
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
+
+
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -31,50 +29,6 @@ using EMA.ImportingEngine;
 using MeediOS;
 
 
-
-
-#region Structures
-
-
-
-public struct Movie
-{
-    public string Name;
-    public string Year;
-    public string ID;
-    public string Hash;
-    public string Imdbid;
-    public string Tagline;
-    public string Duration;
-    public string Plot;
-    public string Directors;
-    public string Cast;
-    public string Writers;
-    public string Genres;
-
-    public string Trivia;
-    public string Goofs;
-
-    public string Cover;
-
-}
-
-
-
-
-public struct TargetVideo
-{
-    public IMLItem Item;
-    public string Videofilename;
-    public string TargetPath;
-
-}
-
-
-
-
-
-#endregion
 
 
 
@@ -128,18 +82,9 @@ namespace EMA.Core
                 }
 
 
+            internal string MfSettingsMovies;
 
-
-
-                #region MediaFolders Settings
-                internal string MfSettingsMovies;
-                #endregion
-
-
-
-
-
-                #region Importer Properties (Get/Set)
+            #region Importer Properties (Get/Set)
       
  
                 /// <summary>

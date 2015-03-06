@@ -37,10 +37,6 @@ namespace EMA.MediaFileImportingEngine
         {
 
 
-            if (Settings
-                    .NowImportingMediaType != "Movies") 
-                return false;
-
 
             if (filmLocations == null)
                 return false;

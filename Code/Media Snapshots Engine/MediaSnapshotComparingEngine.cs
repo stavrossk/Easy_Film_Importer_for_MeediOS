@@ -1,4 +1,26 @@
-﻿using System;
+﻿//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//''    Easy Film Importer for Meedio/MeediOS                                    ''
+//''    Copyright (C) 2008-2012  Stavros Skamagkis                               ''
+//''                                                                             ''
+//''    This program is free software: you can redistribute it and/or modify     ''
+//''    it under the terms of the GNU General Public License as published by     ''
+//''    the Free Software Foundation, either version 3 of the License, or        ''
+//''    (at your option) any later version.                                      ''
+//''                                                                             ''
+//''    This program is distributed in the hope that it will be useful,          ''
+//''    but WITHOUT ANY WARRANTY; without even the implied warranty of           ''
+//''    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            ''
+//''    GNU General Public License for more details.                             ''
+//''                                                                             ''
+//''    You should have received a copy of the GNU General Public License        ''
+//''    along with this program.  If not, see <http://www.gnu.org/licenses/>.    ''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -17,52 +39,88 @@ namespace EMA.MediaSnapshotEngine
 
 
 
-        internal static string[] LoadAndUpdateStoredMediaSnapshot(string datPath, string[] filePaths)
+
+        internal static string[]
+            LoadAndUpdateStoredMediaSnapshot
+            (string datPath, string[] filePaths)
         {
-            #region read .dat file and store to oldfilePaths
 
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Loading previously stored snapshot...");
-            string[] oldfilePaths = File.ReadAllLines(datPath);
 
-            #endregion
 
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Updating media snapshot...");
+            MainImportingEngine
+                .ThisProgress.Progress
+                (MainImportingEngine
+                .CurrentProgress, 
+                "Loading previously " +
+                "stored snapshot...");
+
+
+            string[] oldfilePaths 
+                = File.ReadAllLines
+                (datPath);
+
+
+            MainImportingEngine
+                .ThisProgress.Progress
+                (MainImportingEngine
+                .CurrentProgress,
+                "Updating media snapshot...");
+
+
 
             #region write new .dat file with the new paths.
 
-            File.WriteAllLines(datPath, filePaths);
+            File.WriteAllLines
+                (datPath, filePaths);
 
             #endregion
+
+
 
             return oldfilePaths;
 
         }
 
 
+
+
+
         internal static FileInfo[] CompareMediaSnapshotsAddFilesToScanningList
             (string[] filmLocations, string[] oldfilePaths, string[] filePaths)
         {
-            MainImportingEngine.ThisProgress.Progress
-                (MainImportingEngine.CurrentProgress, 
+
+
+            MainImportingEngine
+                .ThisProgress.Progress
+                (MainImportingEngine
+                .CurrentProgress, 
                 "Comparing media snapshots...");
 
 
-            FileInfo[] filesInDir = new FileInfo[filePaths.Length];
+            var filesInDir = new FileInfo
+                [filePaths.Length];
+
+
 
             for (int i = 0; i < filePaths.Length; i++)
             {
 
 
-                var matchfound = FileHasAlreadyBeenScanned
+                var matchfound 
+                    = FileHasAlreadyBeenScanned
                     (i, filePaths, oldfilePaths);
 
 
-                var foundInLibrary = FileExistsInMediaSections
+                var foundInLibrary 
+                    = FileExistsInMediaSections
                     (filmLocations, filePaths, i);
 
 
                 AddFileToScanningList
-                    (i, filesInDir, filePaths, matchfound, foundInLibrary);
+                    (i, filesInDir,
+                    filePaths,
+                    matchfound,
+                    foundInLibrary);
 
 
             }
@@ -103,16 +161,11 @@ namespace EMA.MediaSnapshotEngine
         {
 
 
-            #region Compare with old snapshot to detect if the file has already been scanned 
-
             bool matchfound = false;
 
             foreach (string t in oldfilePaths)
                 if (filePaths[i] == t)
                     matchfound = true;
-
-            #endregion
-
 
 
             return matchfound;
@@ -122,12 +175,25 @@ namespace EMA.MediaSnapshotEngine
 
 
 
-        internal static string[] CacheCurrentFileEntries(FileInfo[] allfiles)
+        internal static string[]
+            CacheCurrentFileEntries
+            (FileInfo[] allfiles)
         {
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,
+
+
+
+            MainImportingEngine
+                .ThisProgress.Progress
+                (MainImportingEngine
+                .CurrentProgress,
                 "Caching current file entries...");
 
-            var filePaths = new string[allfiles.Length];
+
+            var filePaths 
+                = new string
+                [allfiles.Length];
+
+
 
             for (int i = 0; i < allfiles.Length; i++)
             {
@@ -142,8 +208,14 @@ namespace EMA.MediaSnapshotEngine
                 
             }
 
+
+
             return filePaths;
         }
+
+
+
+
 
 
         private static bool FileExistsInMediaSections
@@ -153,8 +225,11 @@ namespace EMA.MediaSnapshotEngine
 
             if (filmLocations != null)
             {
-                if (filmLocations.Any(t => filePaths[i] == t))
+
+                if (filmLocations.Any
+                    (t => filePaths[i] == t))
                     return true;
+
             }
 
 
@@ -165,30 +240,56 @@ namespace EMA.MediaSnapshotEngine
 
 
 
+
+
+
         internal static bool CompareMediaSnapshotsAndImportNewMediaFiles
                     (FileInfo[] allfilesFI, IMLSection moviesSection,
-                    ref ArrayList extensionsToIgnore, string[] filmLocations,
-                    string[] videoExtensions, string[] audioExtensions,
+                    ref ArrayList extensionsToIgnore,
+                    string[] filmLocations,
+                    string[] videoExtensions,
+                    string[] audioExtensions,
                     IEnumerable<string> combinedSceneTags,
                     string mediaSnapshotLocation,
-                    string pluginPath, IEnumerable<string> videoExtensionsCommon)
+                    string pluginPath,
+                    IEnumerable<string> videoExtensionsCommon)
         {
+
+
             Application.DoEvents();
 
-            var filesToImport = CompareSnapshotsAndConstructArrayOfFilesToImport
+
+
+            var filesToImport
+                = CompareSnapshotsAndConstructArrayOfFilesToImport
                 (allfilesFI, filmLocations, mediaSnapshotLocation);
 
+
+
             Application.DoEvents();
 
 
-            return MediaSnapshotEngine.ScanConstructedArrayAndImportMediaFiles(
-                moviesSection, ref extensionsToIgnore, filmLocations,
-                videoExtensions,
-                audioExtensions, combinedSceneTags, filesToImport,
-                pluginPath, videoExtensionsCommon);
+            return MediaSnapshotEngine
+                .ScanConstructedArrayAndImportMediaFiles(
+                moviesSection, ref extensionsToIgnore,
+                filmLocations, videoExtensions,
+                audioExtensions, combinedSceneTags,
+                filesToImport, pluginPath,
+                videoExtensionsCommon);
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
 
         internal static bool CreateNewMediaSnapshotScanDirectoriesImportMediaFiles
                     (string importRootFolder,
@@ -227,21 +328,49 @@ namespace EMA.MediaSnapshotEngine
         }
 
 
+
+
+
+
         internal static FileInfo[] CompareSnapshotsAndConstructArrayOfFilesToImport
             (FileInfo[] allfiles, string[] filmLocations, string datPath)
         {
-            MainImportingEngine.CurrentProgress = 0;
 
-            var filePaths = CacheCurrentFileEntries(allfiles);
 
-            var oldfilePaths = LoadAndUpdateStoredMediaSnapshot(datPath, filePaths);
+            MainImportingEngine
+                .CurrentProgress = 0;
 
-            FileInfo[] filesInDir = CompareMediaSnapshotsAddFilesToScanningList
+
+
+            var filePaths 
+                = CacheCurrentFileEntries
+                (allfiles);
+
+            var oldfilePaths
+                = LoadAndUpdateStoredMediaSnapshot
+                (datPath, filePaths);
+
+
+
+            FileInfo[] filesInDir
+                = CompareMediaSnapshotsAddFilesToScanningList
                 (filmLocations,  oldfilePaths, filePaths);
+
+
+
 
             return filesInDir;    
         }
+
+
+
+
+
+
     }
+
+
+
 
 
 }

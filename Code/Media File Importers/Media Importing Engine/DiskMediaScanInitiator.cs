@@ -80,11 +80,6 @@ namespace EMA.ImportingEngine
         {
 
 
-
-      
-            Settings.NowImportingMediaType = "Movies";
-
-
             DirectoryScanner.ScanMediaDirectories
                 (Settings.FilmsFolders,
                  ref extensionsToIgnore,
